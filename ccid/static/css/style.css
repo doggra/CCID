@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 html, body {margin:0;padding:0;font-size:14px;font-family: 'Raleway';}
-
+hr {margin-top:10px;}
 #header-1 {
     font-size:3em;
     margin-top:20px;

@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles bootstrap_forms %}
 
 <!doctype html>
 <html>
@@ -54,15 +54,25 @@
 
         <!-- CALCULATOR -->
         <div id="calculator-wrapper">
-            <div class="calc-header">CALCULATE YOUR RATE</div>
+            <div class="calc-header">
+                CALCULATE YOUR RATE
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        Land location:
-                        {{ form }}
+                        <div class="form-title">Land location</div>
+                        <hr />
+                        {{ land_form|as_bootstrap }}
 
                     </div>
-                    <div class="col-sm-6">Crop info</div>
+                    <div class="col-sm-6">
+                        <div class="form-title">Crop info</div>
+                        <hr />
+                        {{ crop_form|as_bootstrap }}
+                        <div>
+                            <input id="compare_rates" type="submit" class="btn btn-lg btn-primary btn-block" value="Compare rates!">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
