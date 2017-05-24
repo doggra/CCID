@@ -10,6 +10,12 @@ html, body {margin:0;padding:0;font-size:14px;font-family: 'Raleway';}
     font-size:1.4em;
     margin-top:20px;
 }
+#header-3 {
+    font-size:3.2em;
+    margin-top:50px;
+    margin-bottom:50px;
+    font-weight:bold;
+}
 .header {
     text-shadow: 0px 0px 15px #555;
     text-align: center;
@@ -21,7 +27,7 @@ html, body {margin:0;padding:0;font-size:14px;font-family: 'Raleway';}
 }
 
 #main-page-wrapper {
-    width:94%;
+    width:92%;
     margin: 0 auto;
     padding-top:20px;
 }

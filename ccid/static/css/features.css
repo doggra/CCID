@@ -1,5 +1,24 @@
 #features-wrapper {
+	padding-top: 32px;
 	background-color:#fff;
 	width:100%;
-	min-height:300px;
+}
+.feature {
+	text-align: center;
+}
+.feature .inner {
+	margin:0 auto;
+	width: 250px;
+}
+.feature .title {
+	font-size:1.2em;
+	font-weight: bold;
+	color: #007b9a;
+}
+.feature .desc {
+	padding-top:15px;
+	padding-bottom:15px;
+	opacity:0.5;
+	font-size:0.9em;
+	line-height: 1.8em;
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/calculator.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/features.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
@@ -54,17 +55,95 @@
         <!-- CALCULATOR -->
         <div id="calculator-wrapper">
             <div class="calc-header">CALCULATE YOUR RATE</div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Land location:
+                        {{ form }}
+
+                    </div>
+                    <div class="col-sm-6">Crop info</div>
+                </div>
+            </div>
         </div>
         <!-- CALCULATOR END -->
+
+        <!-- HEADER-3 -->
+        <div id="header-3" class="header">
+            CALL 1-306-555-5555<br/>
+            <small>FOR ASSISTANCE WITH YOUR QUOTE</small>
+        </div>
     </div>
 
     <div id="features-wrapper" class="container-fluid">
         <div class="row">
-            <div class="col-sm-4">123</div>
-            <div class="col-sm-4">123</div>
-            <div class="col-sm-4">123</div>
+
+            <div class="feature col-sm-4">
+                <div class="inner">
+                    <div class="title">Our Story</div>
+                    <div class="desc">
+                        Our mission is to make insurance easy!
+                        We don't take any commissions on sales, best price guaranteed!
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature col-sm-4">
+                <div class="inner">
+                    <div class="title">Our Vision</div>
+                    <div class="desc">
+                        CCID was created with the concept of equipping
+                        Canadian farmers with the information they need.
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature col-sm-4">
+                <div class="inner">
+                    <div class="title">Technologyy</div>
+                    <div class="desc">
+                        Use our application to compare premiums
+                        from all the leading agro-Insurance providers.
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+    <!-- CONTACT -->
+    <div id="contact-wrapper">
+        <div id="contact">
+            <form>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span class="title">Get in Touch</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input placeholder="Name" type="text" class="form-control" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input placeholder="Email" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <textarea placeholder="Message" rows="7"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input type="submit" value="Send" class="btn btn-primary form-control" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- CONTACT END -->
 
 </body>
 </html>
