@@ -6,6 +6,7 @@ from .forms import LandLocationForm, CropInfoForm
 
 
 class Home(TemplateView):
+
     template_name = 'ccid/home.html'
 
     def get_context_data(self, **kwargs):
@@ -13,3 +14,11 @@ class Home(TemplateView):
         context['land_form'] = LandLocationForm()
         context['crop_form'] = CropInfoForm()
         return context
+
+class CalculateRates(TemplateView):
+
+	template_name = 'ccid/ads_page.html'
+
+class Quote(TemplateView):
+
+	template_name = 'ccid/quote.html'

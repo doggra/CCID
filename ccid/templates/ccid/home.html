@@ -1,18 +1,7 @@
+{% extends 'base.html' %}
 {% load staticfiles bootstrap_forms %}
 
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/calculator.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/features.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-</head>
-<body>
-    
+{% block content %}
     <!-- BACKGROUND -->
     <div id="page-overlay"></div>
     <video id="background" playsinline autoplay muted loop>
@@ -57,24 +46,27 @@
             <div class="calc-header">
                 CALCULATE YOUR RATE
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-title">Land location</div>
-                        <hr />
-                        {{ land_form|as_bootstrap }}
+            <form action="{% url 'calculate_rates' %}" method="POST">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-title">Land location</div>
+                            <hr />
+                            {{ land_form|as_bootstrap }}
 
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-title">Crop info</div>
-                        <hr />
-                        {{ crop_form|as_bootstrap }}
-                        <div>
-                            <input id="compare_rates" type="submit" class="btn btn-lg btn-primary btn-block" value="Compare rates!">
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-title">Crop info</div>
+                            <hr />
+                            {{ crop_form|as_bootstrap }}
+                            <div>
+                                <a href="{% url 'calculate_rates' %}" id="calculate_rates" type="submit" class="btn btn-lg btn-primary btn-block" value="Compare rates!">Compare rates!</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% csrf_token %}
+            </form>
         </div>
         <!-- CALCULATOR END -->
 
@@ -110,7 +102,7 @@
 
             <div class="feature col-sm-4">
                 <div class="inner">
-                    <div class="title">Technologyy</div>
+                    <div class="title">Technology</div>
                     <div class="desc">
                         Use our application to compare premiums
                         from all the leading agro-Insurance providers.
@@ -154,6 +146,4 @@
         </div>
     </div>
     <!-- CONTACT END -->
-
-</body>
-</html>
+{% endblock content %}

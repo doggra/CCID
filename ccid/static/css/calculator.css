@@ -4,6 +4,7 @@
     min-height: 200px;
     width: 100%;
     margin:32px auto 32px;
+    padding-bottom: 30px;
 }
 
 #calculator-wrapper .calc-header {
@@ -21,7 +22,7 @@
     }
 }
 
-input#compare_rates {
+input#calculate_rates {
     margin-top: 20px;
     margin-bottom: 30px;
 }

@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calculator.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/features.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adstyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    {% block extendhead %}{% endblock extendhead %}
+
+</head>
+<body>
+    {% block content %}{% endblock content %}
+</body>
+</html>

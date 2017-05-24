@@ -67,3 +67,20 @@ video {
         font-size:1.4em;
     }
 }
+
+#ads-container {
+    padding-top: 30px;
+    text-align: center;
+}
+#ads-container .loader-gif {
+    margin-bottom: 10px;
+}
+
+#ads-container .ad {
+    margin-top: 15px;
+}
+
+#ads-container-inner img {
+    width:100%;
+    max-width:600px;
+}

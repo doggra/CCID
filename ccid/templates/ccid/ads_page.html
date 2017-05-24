@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block extendhead %}
+    <meta http-equiv="refresh" content="30; url={% url 'quote' %}" />
+{% endblock extendhead %}
+{% block content %}
+<div class="container" id="ads-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <img class="loader-gif" src="{% static 'gfx/loader.gif' %}" /><br />
+            Please wait, we're processing your request...<br />
+            Your browser should redirect in about 30 minutes.
+            If it doesn't, please <a href="#">click here</a>.
+        </div>
+        <div id="ads-container-inner">
+            <div class="ad col-xs-12">
+                <a href="http://placehold.it"><img src="http://placehold.it/600x100"></a>
+            </div>
+
+            <div class="ad col-xs-12">
+                <a href="http://placehold.it"><img src="http://placehold.it/600x100"></a>
+            </div>
+
+            <div class="ad col-xs-12">
+                <a href="http://placehold.it"><img src="http://placehold.it/600x100"></a>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <br />
+            <a href="{% url 'home' %}">Go back to homepage</a>
+            <br />
+        </div>
+    </div>
+</div>
+{% endblock content %}
