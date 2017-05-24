@@ -10,7 +10,7 @@ class Business(models.Model):
     image = models.ImageField()
 
     def __unicode__(self):
-    	return self.name
+        return self.name
 
     class Meta:
         verbose_name_plural = 'Businesses'
