@@ -11,6 +11,7 @@ class CropType(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Quarter(models.Model):
     name = models.CharField(max_length=64)
     value = models.CharField(max_length=64)
