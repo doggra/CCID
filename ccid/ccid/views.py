@@ -29,3 +29,4 @@ class Quote(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Quote, self).get_context_data(**kwargs)
         context['companies'] = Business.objects.all()
+        return context

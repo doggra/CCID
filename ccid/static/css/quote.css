@@ -1,12 +1,15 @@
+#business .homego {
+	padding-left:15px;
+	margin-top:20px;
+}
 #companies {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #companies .company img {
 	float:left;
 	margin-top:10px;
-	width: 100%;
-	max-width:239px;
+	max-width: 100%;
 }
 
 .company {
@@ -41,7 +44,7 @@
 	padding-left: 30px;
 	padding-right: 30px;
 }
-#results-ads {margin-top: 40px;}
+#results-ads {margin-top: 30px;}
 #results-ads img {
 	margin-bottom:10px;
 	width: 100%;

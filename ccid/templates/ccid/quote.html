@@ -1,27 +1,28 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
-    <div class="container">
-        <div class="row">
+    <div id="business" class="container">
+        <div class="homego row">
             <div class="col-xs-12">
-                <a href="#">< Go back to homepage</a>
-        </div></div>
+                <a href="{% url 'home' %}">< Go back to homepage</a>
+            </div>
+        </div>
         <div class="row">
             <div id="companies" class="col-sm-8">
                 <div class="container-fluid">
                     {% for company in companies %}
                     <div class="company row">
                         <div class="logo col-sm-5 col-xs-12">
-                            <img src="{% static 'gfx/ag_direct.png' %}" />
+                            <img src="{{ company.image.url }}" />
                         </div>
                         <div class="text col-sm-7 col-xs-12">
-                            <div class="name">AG DIRECT</div>
+                            <div class="name">{{ company.name }}</div>
                             <div class="price">$0.00</div>
                             <div class="desc">
-                                AG Direct Hail Insurance Ltd has forever changed the way crop hail insurance is purchased. We are the first and only, exclusively online crop hail insurance provider across the Prairies that is solely focused on cutting costs and saving you money. By eliminating broker/agent commissions, streamlining the loss award process, and scrutinizing our marketing and administrative costs, we save you up to 15% or more on your policy premium. You will always be offered our best possible price. Guaranteed.
+                                {{ company.desc }}
                             ​</div>
                             <div class="buy">
-                                <a href="#" class="btn btn-lg btn-primary">Buy now!</a>
+                                <a href="#" class="btn btn-lg btn-primary">Buy now</a>
                             </div>
                         </div>
                     </div>
