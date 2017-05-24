@@ -1,0 +1,68 @@
+#companies {
+	margin-top: 20px;
+}
+
+#companies .company img {
+	float:left;
+	margin-top:10px;
+	width: 100%;
+	max-width:239px;
+}
+
+.company {
+	margin-bottom: 30px;
+}
+
+.company .name {
+	font-size:3em;
+}
+
+.company .price {
+	font-size:2em;
+	color: #37cc5f
+}
+.company .desc {
+	padding-top:10px;
+	font-size: 0.9em;
+	opacity: 0.67;
+}
+
+.company .logo {
+	float: right;
+}
+.company .text {
+	float: left;
+}
+
+.company .buy {
+	padding-top: 20px;
+}
+.company .buy a {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+#results-ads {margin-top: 40px;}
+#results-ads img {
+	margin-bottom:10px;
+	width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+	.company .name, .company .price, .company .desc {
+		text-align: center;
+	}
+	.company .logo img {
+		float:none !important;
+		margin: 10px auto 0;
+		display: block;
+	}
+
+	.company .logo {
+		float: none !important;
+		width:100%;
+	}
+	.company .buy a {
+		margin: 0 auto;
+		display: block;
+	}
+}
