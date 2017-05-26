@@ -8,7 +8,7 @@ class LandLocationForm(forms.Form):
 	quarter = forms.ModelChoiceField(queryset=Quarter.objects.all())
 	section = forms.CharField()
 	township = forms.CharField()
-	range = forms.CharField()
+	_range = forms.CharField()
 	meridian = forms.ModelChoiceField(queryset=Meridian.objects.all())
 	deductible = forms.ModelChoiceField(queryset=Deductible.objects.all())
 
