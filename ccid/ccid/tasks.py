@@ -4,7 +4,6 @@
 import re
 import requests
 from bs4 import BeautifulSoup as BS
-from crawler.models import Crop, Quarter, Deductible, Meridian
 
 
 def get_dropdown_options(soup, menu_name):
@@ -49,17 +48,26 @@ def get_dropdowns():
                  .format(model_name.title(), opt[1].encode('utf-8'), opt[0].encode('utf-8')))
 
 
-def make_request_to_ehailca(args):
+def make_request_to_ehailca(crawler_request):
 
-    url = ('http://ehail.ca/quotes/process.php'
+    # Create session
+    s = requests.Session()
+
+    # Get and save security token
+    s.get('http://www.ehail.ca')
+    crawler_request.token = r.cookies.get('MRSessToken')
+
+
+    url = ('http://www.ehail.ca/quotes/process.php'
            '?ajax=rates'
            '&township={}'
            '&range={}'
            '&meridian={}'
            '&crop={}'
-           '&deductible={}').format(args['township'],
-                                    args['range'],
-                                    args['meridian'],
-                                    args['crop'],
-                                    args['deductible'])
+           '&deductible={}').format(crawler_request.township,
+                                    crawler_request._range,
+                                    crawler_request.meridian,
+                                    crawler_request.crop,
+                                    crawler_request.deductible)
+
     response = requests.get(url)

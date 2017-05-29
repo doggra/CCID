@@ -20,6 +20,10 @@ class Home(TemplateView):
         return context
 
 
+class About(TemplateView):
+    template_name = 'ccid/about.html'
+
+
 class CalculateRates(TemplateView):
     """ View for displaying ads before redirecting to results page
     """
@@ -34,16 +38,17 @@ class CalculateRates(TemplateView):
         crop = Crop.objects.get(pk=request.POST.get('crop'))
         deductible = Deductible.objects.get(pk=request.POST.get('deductible'))
 
-        cr = CrawlerRequest.objects.create(quarter=quarter,
-                                           section=section,
-                                           township=township,
+        cr = CrawlerRequest.objects.create(quarter=request.POST.get('quarter', ''),
+                                           section=request.POST.get('section', ''),
+                                           township=request.POST.get('township', ''),
+                                           _range=request.POST.get('_range', ''),
                                            meridian=meridian.value,
                                            crop=crop.value,
                                            deductible=deductible.value,
-                                           acres=acres,
-                                           coverage=coverage,
-                                           _range=_range)
+                                           acres=request.POST.get('acres', ''),
+                                           coverage=request.POST.get('coverage', ''))
 
+        make_request_to_ehailca(cr)
 
         return render(request, self.template_name)
 
