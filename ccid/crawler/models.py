@@ -39,6 +39,7 @@ class Deductible(models.Model):
 
 
 class CrawlerRequest(models.Model):
+    datetime = models.DateTimeField(auto_now_add=True)
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     quarter = models.CharField(max_length=64)
     section = models.CharField(max_length=64)
@@ -49,12 +50,12 @@ class CrawlerRequest(models.Model):
     deductible = models.CharField(max_length=64)
     acres = models.CharField(max_length=64)
     coverage = models.CharField(max_length=64)
-    result = models.ForeignKey('CrawlerResult', null=True)
+    result = models.OneToOneField('CrawlerResult', null=True)
+    token = models.CharField(max_length=100, blank=True)
 
     def __unicode__(self):
-        return self.name
+        return self.datetime.strftime("%Y/%m/%d %H:%M")
 
-    # On save create results
 
 class CrawlerResult(models.Model):
     price = models.CharField(max_length=30)

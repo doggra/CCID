@@ -7,7 +7,7 @@ from .forms import LandLocationForm, CropInfoForm
 from .tasks import get_dropdowns
 from business.models import Business
 from crawler.models import Crop, Quarter, Deductible, Meridian, CrawlerRequest
-
+from ccid.tasks import make_request_to_ehailca
 
 class Home(TemplateView):
 
