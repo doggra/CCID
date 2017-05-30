@@ -10,16 +10,16 @@
         <div class="row">
             <div id="companies" class="col-sm-8">
                 <div class="container-fluid">
-                    {% for company in companies %}
+                    {% for result in crawler_request.crawlerresult_set.all %}
                     <div class="company row">
                         <div class="logo col-sm-5 col-xs-12">
-                            <img src="{{ company.image.url }}" />
+                            <img src="{{ result.business.image.url }}" />
                         </div>
                         <div class="text col-sm-7 col-xs-12">
-                            <div class="name">{{ company.name }}</div>
-                            <div class="price">$0.00</div>
+                            <div class="name">{{ result.business.name }}</div>
+                            <div class="price">${{ result.premium }}</div>
                             <div class="desc">
-                                {{ company.desc }}
+                                {{ result.business.desc }}
                             ​</div>
                             <div class="buy">
                                 <a href="#" class="btn btn-lg btn-primary">Buy now</a>
@@ -33,6 +33,11 @@
                 <a href="http://placehold.it"><img src="http://placehold.it/600x200"></a>
                 <a href="http://placehold.it"><img src="http://placehold.it/600x200"></a>
                 <a href="http://placehold.it"><img src="http://placehold.it/600x200"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 disclaimer" class="col-xs-12">
+                *rates subject to change
             </div>
         </div>
     </div>

@@ -84,3 +84,10 @@ video {
     width:100%;
     max-width:600px;
 }
+
+.disclaimer {
+    margin-bottom:20px;
+    font-size:0.8em;
+    opacity: 0.67;
+    text-align: center;
+}

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 import uuid
 from django.db import models
+from business.models import Business
 
 
 class Crop(models.Model):
@@ -50,12 +51,13 @@ class CrawlerRequest(models.Model):
     deductible = models.CharField(max_length=64)
     acres = models.CharField(max_length=64)
     coverage = models.CharField(max_length=64)
-    result = models.OneToOneField('CrawlerResult', null=True)
-    token = models.CharField(max_length=100, blank=True)
 
     def __unicode__(self):
         return self.datetime.strftime("%Y/%m/%d %H:%M")
 
 
 class CrawlerResult(models.Model):
-    price = models.CharField(max_length=30)
+    request = models.ForeignKey(CrawlerRequest, null=True)
+    business = models.ForeignKey(Business, null=True)
+    liability = models.CharField(max_length=50, default=0)
+    premium = models.CharField(max_length=30, default=0)

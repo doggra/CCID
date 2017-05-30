@@ -38,8 +38,9 @@ class CalculateRates(TemplateView):
         meridian = Meridian.objects.get(pk=request.POST.get('meridian'))
         crop = Crop.objects.get(pk=request.POST.get('crop'))
         deductible = Deductible.objects.get(pk=request.POST.get('deductible'))
+        quarter = Quarter.objects.get(pk=request.POST.get('quarter', ''))
 
-        cr = CrawlerRequest.objects.create(quarter=request.POST.get('quarter', ''),
+        cr = CrawlerRequest.objects.create(quarter=quarter.value,
                                            section=request.POST.get('section', ''),
                                            township=request.POST.get('township', ''),
                                            _range=request.POST.get('_range', ''),
@@ -51,7 +52,7 @@ class CalculateRates(TemplateView):
 
         make_request_to_ehailca(cr)
 
-        return render(request, self.template_name)
+        return render(request, self.template_name, {'sec': cr.uuid})
 
 
 class Quote(TemplateView):
@@ -60,5 +61,5 @@ class Quote(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Quote, self).get_context_data(**kwargs)
-        context['companies'] = Business.objects.all()
+        context['crawler_request'] = CrawlerRequest.objects.get(uuid=self.kwargs['sec'])
         return context

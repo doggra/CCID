@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block extendhead %}
-    <meta http-equiv="refresh" content="20; url={% url 'quote' %}" />
+    <meta http-equiv="refresh" content="15; url={% url 'quote' sec %}" />
 {% endblock extendhead %}
 {% block content %}
 <div class="container" id="ads-container">
@@ -9,7 +9,7 @@
         <div class="col-xs-12">
             <img class="loader-gif" src="{% static 'gfx/loader.gif' %}" /><br />
             Please wait, we're processing your request...<br />
-            Your browser should redirect in about 20 seconds.
+            Your browser should redirect in about 15 seconds.
             <!-- If it doesn't, please <a href="#">click here</a>. -->
         </div>
         <div id="ads-container-inner">

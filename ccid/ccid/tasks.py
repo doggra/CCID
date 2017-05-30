@@ -3,6 +3,8 @@
 
 import re
 import requests
+from business.models import Business
+from crawler.models import CrawlerResult
 from bs4 import BeautifulSoup as BS
 
 
@@ -53,9 +55,10 @@ def make_request_to_ehailca(crawler_request):
     # Create session
     s = requests.Session()
 
-    # Fetch security token and set referer
+    # Fetch security token and set crucial headers.
     s.get('http://www.ehail.ca/quotes')
     s.headers.update({'Referer': 'http://www.ehail.ca/quotes/'})
+    s.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'})
     crawler_request.token = s.cookies.get('MRSessToken')
 
 
@@ -72,3 +75,56 @@ def make_request_to_ehailca(crawler_request):
                                     crawler_request.deductible)
 
     r = s.get(url)
+
+    # Get options with companies and rates.
+    payload = {}
+    soup = BS(r.content, 'html.parser')
+    options = soup.find_all('option')
+    results = {}
+    c = 1
+    for opt in options[1:]:
+        optText = opt.getText()
+        if 'NA' not in optText:
+            option_payload = {
+                'item{}'.format(c,): c,
+                'acres{}'.format(c,): crawler_request.acres,
+                'crop{}'.format(c,): crawler_request.crop,
+                'quarter{}'.format(c,): crawler_request.quarter,
+                'section{}'.format(c,): crawler_request.section,
+                'township{}'.format(c,): crawler_request.township,
+                'range{}'.format(c,): crawler_request._range,
+                'meridian{}'.format(c,): crawler_request.meridian,
+                'deductible{}'.format(c,): crawler_request.deductible,
+                'company{}'.format(c,): opt.get('value'),
+                'coverageperacre{}'.format(c,): crawler_request.coverage
+            }
+            payload.update(option_payload)
+            results[c] = {'company': Business.objects.get(\
+                                        name__icontains=optText.split(' ')[0])}
+            c+=1
+
+    # Fetch results
+    r = s.post('http://www.ehail.ca/quotes/legalinfo.php', data=payload)
+
+    soup = BS(r.content, 'html.parser')
+    summary_table = soup.find('table', {'id': 'purchase_summary'})
+    trs = summary_table.find_all('tr')
+
+    for tr in trs[1:]:
+        try:
+            tds = tr.find_all('td')
+            row_id = int(tds[0].getText().split("#")[1])
+            liability = tds[11].getText().split('$')[1].split("<")[0]
+            premium = tds[12].getText().split('$')[1].split(" ")[0]
+            results[row_id]['liability'] = liability
+            results[row_id]['premium'] = premium
+
+        # !! Exception for "TOTAL" row.
+        except IndexError:
+            pass
+
+    for k,v in results.items():
+        CrawlerResult.objects.create(request=crawler_request,
+                                     business=v['company'],
+                                     liability=v['liability'],
+                                     premium=v['premium'])
