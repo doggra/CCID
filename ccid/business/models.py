@@ -20,5 +20,5 @@ class WaitingAds(models.Model):
     image = models.ImageField()
 
 
-class ResultAds(models.Model):
+class ResultsAds(models.Model):
     image = models.ImageField()
