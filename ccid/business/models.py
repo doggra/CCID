@@ -14,3 +14,11 @@ class Business(models.Model):
 
     class Meta:
         verbose_name_plural = 'Businesses'
+
+
+class WaitingAds(models.Model):
+    image = models.ImageField()
+
+
+class ResultAds(models.Model):
+    image = models.ImageField()
