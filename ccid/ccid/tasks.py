@@ -53,9 +53,10 @@ def make_request_to_ehailca(crawler_request):
     # Create session
     s = requests.Session()
 
-    # Get and save security token
-    s.get('http://www.ehail.ca')
-    crawler_request.token = r.cookies.get('MRSessToken')
+    # Fetch security token and set referer
+    s.get('http://www.ehail.ca/quotes')
+    s.headers.update({'Referer': 'http://www.ehail.ca/quotes/'})
+    crawler_request.token = s.cookies.get('MRSessToken')
 
 
     url = ('http://www.ehail.ca/quotes/process.php'
@@ -70,4 +71,4 @@ def make_request_to_ehailca(crawler_request):
                                     crawler_request.crop,
                                     crawler_request.deductible)
 
-    response = requests.get(url)
+    r = s.get(url)
