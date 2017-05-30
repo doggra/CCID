@@ -13,17 +13,11 @@
             <!-- If it doesn't, please <a href="#">click here</a>. -->
         </div>
         <div id="ads-container-inner">
-            <div class="ad col-xs-12">
-                <a href="http://placehold.it"><img src="http://placehold.it/600x100"></a>
-            </div>
-
-            <div class="ad col-xs-12">
-                <a href="http://placehold.it"><img src="http://placehold.it/600x100"></a>
-            </div>
-
-            <div class="ad col-xs-12">
-                <a href="http://placehold.it"><img src="http://placehold.it/600x100"></a>
-            </div>
+            {% for ad in ads %}
+                <div class="ad col-xs-12">
+                    <img src="{{ ad.image.url }}"></a>
+                </div>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
             <br />

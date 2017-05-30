@@ -17,8 +17,8 @@ class Business(models.Model):
 
 
 class WaitingAds(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(help_text='Size: 600px x 100px')
 
 
 class ResultsAds(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(help_text='Size: 600px x 200px')

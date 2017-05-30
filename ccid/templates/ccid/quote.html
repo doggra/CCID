@@ -29,7 +29,7 @@
                     {% empty %}
                     <div class="row">
                         <div class="col-xs-12">
-                            <b>Sorry!</b><br />
+                            <h3>Sorry!</h3>
                             No companies were found matching provided criteria.
                         </div>
                     </div>
@@ -37,9 +37,9 @@
                 </div>
             </div>
             <div id="results-ads" class="col-sm-4">
-                <a href="http://placehold.it"><img src="http://placehold.it/600x200"></a>
-                <a href="http://placehold.it"><img src="http://placehold.it/600x200"></a>
-                <a href="http://placehold.it"><img src="http://placehold.it/600x200"></a>
+                {% for ad in ads %}
+                    <img src="{{ ad.image.url }}"></a>
+                {% endfor %}
             </div>
         </div>
         <div class="row">

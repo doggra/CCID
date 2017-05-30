@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from .forms import LandLocationForm, CropInfoForm
 from .tasks import get_dropdowns
-from business.models import Business
+from business.models import Business, WaitingAds, ResultsAds
 from crawler.models import Crop, Quarter, Deductible, Meridian, CrawlerRequest
 from ccid.tasks import make_request_to_ehailca
 
@@ -30,6 +30,11 @@ class CalculateRates(TemplateView):
     """
 
     template_name = 'ccid/ads_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CalculateRates, self).get_context_data(**kwargs)
+        context['ads'] = ResultsAds.objects.all()
+        return context
 
     def post(self, request, *args, **kwargs):
 
@@ -62,4 +67,5 @@ class Quote(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Quote, self).get_context_data(**kwargs)
         context['crawler_request'] = CrawlerRequest.objects.get(uuid=self.kwargs['sec'])
+        context['ads'] = ResultsAds.objects.all()
         return context
