@@ -26,6 +26,13 @@
                             </div>
                         </div>
                     </div>
+                    {% empty %}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <b>Sorry!</b><br />
+                            No companies were found matching provided criteria.
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
