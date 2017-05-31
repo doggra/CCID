@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import random
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from .forms import LandLocationForm, CropInfoForm
 from .tasks import get_dropdowns
-from business.models import Business, WaitingAds, ResultsAds
-from crawler.models import Crop, Quarter, Deductible, Meridian, CrawlerRequest
+from business.models import Business, WaitingAds, ResultsAds, Fact
+from crawler.models import Crop, Quarter, Deductible, Meridian, CrawlerRequest, CrawlerResult
 from ccid.tasks import make_request_to_ehailca
-
 
 class Home(TemplateView):
 
@@ -33,7 +33,6 @@ class CalculateRates(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CalculateRates, self).get_context_data(**kwargs)
-        context['ads'] = ResultsAds.objects.all()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -56,8 +55,12 @@ class CalculateRates(TemplateView):
                                            coverage=request.POST.get('coverage', ''))
 
         make_request_to_ehailca(cr)
+        context = {}
+        context['sec'] = cr.uuid
+        context['ads'] = WaitingAds.objects.all()
+        context['fact'] = random.choice(Fact.objects.all())
 
-        return render(request, self.template_name, {'sec': cr.uuid})
+        return render(request, self.template_name, context)
 
 
 class Quote(TemplateView):
@@ -66,6 +69,6 @@ class Quote(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Quote, self).get_context_data(**kwargs)
-        context['crawler_request'] = CrawlerRequest.objects.get(uuid=self.kwargs['sec'])
+        context['results'] = CrawlerResult.objects.filter(request__uuid=self.kwargs['sec']).order_by('premium')
         context['ads'] = ResultsAds.objects.all()
         return context

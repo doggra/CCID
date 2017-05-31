@@ -103,13 +103,14 @@ def make_request_to_ehailca(crawler_request):
                                         name__icontains=optText.split(' ')[0])}
             c+=1
 
-    # Fetch results
+    # Fetch results.
     r = s.post('http://www.ehail.ca/quotes/legalinfo.php', data=payload)
 
     soup = BS(r.content, 'html.parser')
     summary_table = soup.find('table', {'id': 'purchase_summary'})
     trs = summary_table.find_all('tr')
 
+    # Omit header row.
     for tr in trs[1:]:
         try:
             tds = tr.find_all('td')
@@ -119,7 +120,7 @@ def make_request_to_ehailca(crawler_request):
             results[row_id]['liability'] = liability
             results[row_id]['premium'] = premium
 
-        # !! Exception for "TOTAL" row.
+        # !! Exception for "TOTAL" (footer) row.
         except IndexError:
             pass
 

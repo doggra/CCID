@@ -10,10 +10,10 @@ class LandLocationForm(forms.Form):
     township = forms.CharField(max_length=2)
     _range = forms.IntegerField(max_value=20, label='Range')
     meridian = forms.ModelChoiceField(queryset=Meridian.objects.all())
-    deductible = forms.ModelChoiceField(queryset=Deductible.objects.all())
 
 
 class CropInfoForm(forms.Form):
     crop = forms.ModelChoiceField(label='Crop type', queryset=Crop.objects.all())
     acres = forms.IntegerField(max_value=999, min_value=1)
     coverage = forms.DecimalField(label='Coverage ( $ / Acre )')
+    deductible = forms.ModelChoiceField(queryset=Deductible.objects.all())

@@ -95,3 +95,10 @@ video {
 #about {
     margin-top:50px;
 }
+
+#hail-fact {
+    font-weight: bold;
+    font-size:1.2em;
+    padding-top:20px;
+    padding-bottom:20px;
+}

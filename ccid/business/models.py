@@ -8,6 +8,7 @@ class Business(models.Model):
     name = models.CharField(max_length=100)
     desc = models.TextField()
     image = models.ImageField()
+    link = models.CharField(max_length=254, default="#")
 
     def __unicode__(self):
         return self.name
@@ -22,3 +23,10 @@ class WaitingAds(models.Model):
 
 class ResultsAds(models.Model):
     image = models.ImageField(help_text='Size: 600px x 200px')
+
+
+class Fact(models.Model):
+    text = models.TextField()
+
+    def __unicode__(self):
+        return self.text

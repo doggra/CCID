@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from ccid.views import Home, CalculateRates, Quote, About
 
+admin.site.site_header = 'CCID: Administration Panel'
 
 urlpatterns = [
 

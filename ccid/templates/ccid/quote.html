@@ -10,7 +10,7 @@
         <div class="row">
             <div id="companies" class="col-sm-8">
                 <div class="container-fluid">
-                    {% for result in crawler_request.crawlerresult_set.all %}
+                    {% for result in results %}
                     <div class="company row">
                         <div class="logo col-sm-5 col-xs-12">
                             <img src="{{ result.business.image.url }}" />

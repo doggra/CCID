@@ -61,3 +61,6 @@ class CrawlerResult(models.Model):
     business = models.ForeignKey(Business, null=True)
     liability = models.CharField(max_length=50, default=0)
     premium = models.CharField(max_length=30, default=0)
+
+    def __unicode__(self):
+        return self.business.name
