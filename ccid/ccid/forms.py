@@ -8,7 +8,7 @@ class LandLocationForm(forms.Form):
     quarter = forms.ModelChoiceField(queryset=Quarter.objects.all())
     section = forms.CharField(max_length=2)
     township = forms.CharField(max_length=2)
-    _range = forms.IntegerField(max_value=20, label='Range')
+    _range = forms.IntegerField(max_value=34, label='Range')
     meridian = forms.ModelChoiceField(queryset=Meridian.objects.all())
 
 
