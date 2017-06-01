@@ -2,3 +2,4 @@ env/
 *.py[cod]
 *.sqlite3
 media/
+*.pem
