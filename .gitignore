@@ -3,3 +3,12 @@ env/
 *.sqlite3
 media/
 *.pem
+.bash_history
+.bash_logout
+.bashrc
+.cache/
+.profile
+.ssh/
+.viminfo
+_ccid/
+ccid/business_images/
