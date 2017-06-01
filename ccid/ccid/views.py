@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 import random
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from .forms import LandLocationForm, CropInfoForm
 from .tasks import get_dropdowns
@@ -34,6 +34,9 @@ class CalculateRates(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(CalculateRates, self).get_context_data(**kwargs)
         return context
+
+    def get(self, request, *args, **kwargs):
+      return redirect('home')
 
     def post(self, request, *args, **kwargs):
 
